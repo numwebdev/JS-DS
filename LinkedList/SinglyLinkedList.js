@@ -38,9 +38,27 @@ class SinglyLinkedList {
         this.count++;
         return this;
     }
+
+    /**
+     * Add New Data at the End
+     * @param {String | Number} value - Data
+     * @returns New Node
+     */
+    appendDataAtEnd = (value) => {
+        let newNode = {
+            value: value,
+            next: null
+        }
+
+        this.tail.next = newNode;
+        this.tail = newNode;
+        this.count++;
+        return this;
+    }
 }
 
 const singLList = new SinglyLinkedList(50);
+
 singLList.prependData(75);
 singLList.prependData(80);
 singLList.prependData(60);
@@ -50,3 +68,11 @@ console.log(JSON.stringify(singLList.head))
 
 // Output
 // { "value": 100, "next": { "value": 60, "next": { "value": 80, "next": { "value": 75, "next": { "value": 50, "next": null } } } } }
+
+
+singLList.appendDataAtEnd(50);
+singLList.appendDataAtEnd(25);
+
+console.log(JSON.stringify(singLList.head))
+// Output
+// {"value":100,"next":{"value":60,"next":{"value":80,"next":{"value":75,"next":{"value":50,"next":{"value":50,"next":{"value":25,"next":null}}}}}}}  
