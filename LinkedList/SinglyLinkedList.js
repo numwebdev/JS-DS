@@ -55,6 +55,40 @@ class SinglyLinkedList {
         this.count++;
         return this;
     }
+
+    insertDataByIndex = (index, value) => {
+        this.count++;
+        let newNode = {
+            value: value,
+            next: null
+        }
+
+        let leaderNode = this.traverse(index - 1);
+        let nextNode = leaderNode.next;
+        leaderNode.next = newNode;
+        newNode.next = nextNode;
+        return this.displayData();
+    }
+
+    displayData = () => {
+        let data = [];
+        let currentNode = this.head;
+        while (currentNode != null) {
+            data.push(currentNode.value);
+            currentNode = currentNode.next;
+        }
+        return data;
+    }
+
+    traverse = (index) => {
+        let counter = 0;
+        let currentNode = this.head;
+        while (counter != index) {
+            counter++;
+            currentNode = currentNode.next;
+        }
+        return currentNode;
+    }
 }
 
 const singLList = new SinglyLinkedList(50);
@@ -64,8 +98,7 @@ singLList.prependData(80);
 singLList.prependData(60);
 singLList.prependData(100);
 
-console.log(JSON.stringify(singLList.head))
-
+// console.log(JSON.stringify(singLList.head))
 // Output
 // { "value": 100, "next": { "value": 60, "next": { "value": 80, "next": { "value": 75, "next": { "value": 50, "next": null } } } } }
 
@@ -73,6 +106,13 @@ console.log(JSON.stringify(singLList.head))
 singLList.appendDataAtEnd(50);
 singLList.appendDataAtEnd(25);
 
-console.log(JSON.stringify(singLList.head))
+// console.log(JSON.stringify(singLList.head))
 // Output
 // {"value":100,"next":{"value":60,"next":{"value":80,"next":{"value":75,"next":{"value":50,"next":{"value":50,"next":{"value":25,"next":null}}}}}}}  
+
+
+singLList.insertDataByIndex(2, 10);
+singLList.insertDataByIndex(4, 5);
+console.log(JSON.stringify(singLList.head))
+// Output
+// {"value":100,"next":{"value":60,"next":{"value":10,"next":{"value":80,"next":{"value":5,"next":{"value":75,"next":{"value":50,"next":{"value":50,"next":{"value":25,"next":null}}}}}}}}}
