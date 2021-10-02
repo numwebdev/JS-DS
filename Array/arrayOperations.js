@@ -4,8 +4,8 @@ const strings = ['n', 'u', 'm'];
 /**
  * Add element at the End
  */
-strings.push('a');
-strings.push('n');
+strings.push('d');
+strings.push('e');
 
 
 /**
@@ -13,6 +13,24 @@ strings.push('n');
  */
 strings.pop();
 
+
+/**
+ * Add element at the Beginning
+ */
+strings.unshift('D')
+strings.unshift('e')
+
+
+/**
+ * Remove First element
+ */
+strings.shift();
+
+
+/**
+ * Add element at the Index
+ */
+strings.splice(4, 0, 'Num',);
 
 
 
