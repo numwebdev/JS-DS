@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stack - string reverse</title>
+</head>
+
+<body>
+    <div align="center">
+        <h3>stack - string reverse => Stack-DS</h3>
+        <p>(Open console to check output)</p>
+    </div>
+
+    <script>
+        let data = [];
+        let currentSize = data.length;
+
+        const push = (value) => {
+            data[currentSize] = value;
+            currentSize += 1;
+        }
+
+        const pop = () => {
+            lastRemovedItem = data[currentSize - 1];
+            currentSize -= 1;
+            data.length = currentSize;
+            return lastRemovedItem;
+        }
+
+        const reverseString = (dataArr) => {
+            for (let i = 0; i < dataArr.length; i++) {
+                push(dataArr[i]);
+            }
+
+            for (let i = 0; i < dataArr.length; i++) {
+                dataArr[i] = pop();
+            }
+        }
+
+        let string = "JavaScript";
+        let stringArr = string.split("");
+
+        console.log('Before Reverse: ', string);
+        reverseString(stringArr);
+        string = stringArr.join("");
+        console.log('After Reverse: ', string);
+    </script>
+</body>
+
+</html>
