@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue</title>
+</head>
+
+<body>
+    <div align="center">
+        <h3>Queue with Function</h3>
+        <p>(Open console to check output)</p>
+
+        <div>
+            <div>
+                <input type="text" id="inputElem" />
+                <button onclick="enQueueData()"> EnQueue </button>
+            </div>
+            <br />
+            <div>
+                <button onclick="deQueue()"> DeQueue </button>
+                <button onclick="front()"> Get Front Data </button>
+                <button onclick="rear()"> Get Rear Data </button>
+                <button onclick="checkIsEmpty()"> Check Queue Empty </button>
+                <button onclick="display()"> Display </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let queue = [];
+        let currentIndex = queue.length;
+        let maxSize = 6;
+
+        function enQueue(newVal) {
+            if (currentIndex >= maxSize) {
+                console.error("Queue is already full");
+                return false;
+            }
+            queue[currentIndex] = newVal;
+            currentIndex++;
+        }
+
+        function deQueue() {
+            if (!isEmpty()) {
+                for (let i = 0; i < queue.length; i++) {
+                    queue[i] = queue[i + 1];
+                }
+                currentIndex--;
+                queue.length--;
+            } else {
+                console.error("Queue is Empty.");
+            }
+        }
+
+        function display() {
+            console.log(queue);
+        }
+
+        function front() {
+            if (!isEmpty()) {
+                console.log(queue[0]);
+            } else {
+                console.error("Queue is Empty.");
+            }
+        }
+
+        function rear() {
+            if (!isEmpty()) {
+                console.log(queue[currentIndex - 1]);
+            } else {
+                console.error("Queue is Empty.");
+            }
+        }
+
+        function isEmpty() {
+            return currentIndex <= 0 ? true : false;
+        }
+
+        const enQueueData = () => {
+            let inputElem = document.getElementById("inputElem");
+            enQueue(inputElem.value);
+            inputElem.value = "";
+        }
+
+        const checkIsEmpty = () => {
+            console.log(isEmpty());
+        }
+
+        enQueue(5);
+        enQueue(10);
+        enQueue(8);
+        display();
+
+    </script>
+</body>
+
+</html>
