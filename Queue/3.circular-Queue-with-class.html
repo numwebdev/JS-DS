@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue</title>
+</head>
+
+<body>
+    <div align="center">
+        <h3>Circular-Queue with Class</h3>
+        <p>(Open console to check output)</p>
+    </div>
+
+    <script>
+        class Queue {
+            constructor(size) {
+                this.maxSize = size;
+                this.items = new Array(size);
+                this.currentIndex = 0;
+                this.rear = -1;
+                this.front = -1;
+            }
+
+            isEmpty() {
+                return this.currentIndex <= 0 ? true : false;
+            }
+
+            isFull() {
+                return this.currentIndex == this.maxSize ? true : false;
+            }
+
+            enQueue(newVal) {
+                if (this.isFull()) {
+                    console.error("Queue is Full");
+                    return false;
+                }
+
+                if (this.rear == this.maxSize - 1) {
+                    this.rear = 0;
+                } else {
+                    this.rear++;
+                }
+
+                this.items[this.rear] = newVal;
+                this.currentIndex++;
+
+                if (this.front == -1) {
+                    this.front = this.rear;
+                }
+            }
+
+            deQueue() {
+                if (this.isEmpty()) {
+                    console.error("Queue is Empty");
+                    return false;
+                }
+
+                this.items[this.front] = null;
+                if (this.front == this.maxSize - 1) {
+                    this.front = 0;
+                } else {
+                    this.front++;
+                }
+                this.currentIndex--;
+            }
+        }
+
+        let queue1 = new Queue(4);
+        queue1.enQueue(50);
+        queue1.enQueue(10);
+        queue1.enQueue(20);
+        console.log(queue1);
+    </script>
+</body>
+
+</html>
